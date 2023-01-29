@@ -11,10 +11,10 @@ function Landing() {
             <span>Glory</span>
           </div>
           <div className='flex justify-between items-center w-[200px] text-lg font-semibold'>
-            <Link to='/login' className='w-[90px] hover:border-b-[3px] border-[#7851a9] pt-1 text-center'>
+            <Link to='/login' className='w-[90px] hover:border-b-[3px] border-dark-accent pt-1 text-center'>
               Log In
             </Link>
-            <Link to='/signup' className='w-[90px] hover:border-b-[3px] border-[#7851a9] pt-1 text-center'>
+            <Link to='/signup' className='w-[90px] hover:border-b-[3px] border-dark-accent pt-1 text-center'>
               Sign Up
             </Link>
           </div>
@@ -28,8 +28,8 @@ function Landing() {
           </div>
           <div className='w-[full] mt-[5vh]'>
             <div className='flex justify-evenly w-[40vw]'>
-              <Link to='/signup' className='flex justify-center items-center w-[200px] h-[45px] text-lg border border-[#7851a9] rounded-xl bg-[#7851a9]'>Get Started</Link>
-              <Link to='/signup' className='flex justify-center items-center w-[200px] h-[45px] text-lg border-2 border-[#7851a9] rounded-xl'>Features</Link>
+              <Link to='/signup' className='flex justify-center items-center w-[200px] h-[45px] text-lg border border-dark-accent rounded-xl bg-dark-accent'>Get Started</Link>
+              <Link to='/signup' className='flex justify-center items-center w-[200px] h-[45px] text-lg border-2 border-dark-accent rounded-xl'>Features</Link>
             </div>
           </div>
         </div>
