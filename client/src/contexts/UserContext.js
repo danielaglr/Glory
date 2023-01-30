@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
   };
 
   function emailLogIn(email, password) {
-    return signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   function getUser() {
