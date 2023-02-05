@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { updateProfile } from '@firebase/auth';
 import { useAuth } from '../contexts/UserContext';
@@ -10,7 +10,7 @@ function SignUp() {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const { emailSignUp } = useAuth();
+  const { emailSignUp, currentUser } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit() {
@@ -30,6 +30,13 @@ function SignUp() {
       };
     };
   };
+
+  useEffect(() => {
+    if (currentUser && currentUser.uid) {
+      navigate('/home')
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className='flex justify-center items-center w-screen h-screen text-white bg-dark-theme'>

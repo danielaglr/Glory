@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/UserContext';
 
@@ -6,7 +6,7 @@ function LogIn() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const { emailLogIn } = useAuth();
+  const { emailLogIn, currentUser } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit() {
@@ -20,6 +20,12 @@ function LogIn() {
     };
   };
 
+  useEffect(() => {
+    if (currentUser && currentUser.uid) {
+      navigate('/home')
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className='flex justify-center items-center w-screen h-screen text-white bg-dark-theme'>
