@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+const { getFirestore, Timestamp, FieldValue, } = require('firebase-admin/firestore');
 const serviceAccount = require('./admin-config.json');
 const app = express();
 
@@ -28,6 +28,12 @@ app.get('/', (req, res) => {
 
 app.get('/user', (req, res) => {
   res.send('Get request at /user');
+});
+
+app.get('/user/:userID/notifications', async (req, res) => {
+  const userRef = await db.collection('users').doc(`${req.params.userID}`).get();
+  const notifRef = userRef.data().notifications;
+  res.send(notifRef);
 });
 
 app.put('/user', (req, res) => {
