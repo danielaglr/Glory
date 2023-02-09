@@ -23,7 +23,8 @@ function SignUp() {
         await axios.put('http://localhost:3001/user', {
           userID: auth.currentUser.uid,
           name: username,
-          email: email
+          email: email,
+          accountCreated: new Date(),
         }).then(navigate('/'));
       } catch (err) {
         console.log(err.message);
@@ -35,6 +36,7 @@ function SignUp() {
     if (currentUser && currentUser.uid) {
       navigate('/home')
     };
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
