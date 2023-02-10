@@ -1,5 +1,5 @@
 export default function MDT(timestamp) {
-  var date = Date(timestamp);
+  var date = new Date(timestamp * 1000);
   var month;
   var day = new Date(date).getDate();
   var year = new Date(date).getFullYear();
