@@ -6,6 +6,7 @@ node_modules/
 /.pnp
 .pnp.js
 admin-config.json
+client/src/firebase.js
 
 # testing
 /coverage
