@@ -26,8 +26,10 @@ app.get('/', (req, res) => {
   res.send(console.log('Request recieved'));
 });
 
-app.get('/user', (req, res) => {
-  res.send('Get request at /user');
+app.get('/user/:userID', async (req, res) => {
+  const userRef = await db.collection('users').doc(`${req.params.userID}`).get();
+  const user = userRef.data();
+  res.send(user)
 });
 
 app.get('/user/:userID/notifications', async (req, res) => {
@@ -45,7 +47,8 @@ app.get('/user/:userID/lifts', async (req, res) => {
 app.get('/user/:userID/friends/posts', async (req, res) => {
   res.set('Content-Type', 'application/json');
   const frLifts = [];
-  await db.collection('lifts').where('author_uid', '==', 's5XHLdOtMZQfe0RuQoUqfSsuLWf2').get().then(function(querySnapshot) {
+  const friendsRef = await db.collection('friends').doc(`${req.params.userID}`).get();
+  await db.collection('lifts').where('author_uid', 'in', friendsRef.data().allFriends_uid).limit(10).orderBy('time', 'asc').get().then(function(querySnapshot) {
     if (querySnapshot.size > 0) {
       querySnapshot.forEach((query) => {
         frLifts.push(query.data());
@@ -68,6 +71,7 @@ app.put('/user', (req, res) => {
 
   db.collection('users').doc(`${req.body.userID}`).set({
     _id: req.body.userID,
+    _created: req.body.accountCreated,
     email: req.body.email,
     name: req.body.name 
   });
