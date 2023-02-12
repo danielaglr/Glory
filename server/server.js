@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, QuerySnapshot } = require('firebase-admin/firestore');
+const { getFirestore, QuerySnapshot, FieldValue } = require('firebase-admin/firestore');
 const serviceAccount = require('./admin-config.json');
 const app = express();
 
@@ -76,6 +76,21 @@ app.put('/user', (req, res) => {
     name: req.body.name 
   });
 });
+
+app.put('/user/:userID/lifts', (req, res) => {
+  res.set('Content-Type', 'application/json');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
+
+  db.collection('users').doc(`${req.params.userID}`).update({
+    lifts: FieldValue.arrayUnion({
+      lift: req.body.lift,
+      reps: req.body.reps,
+      weight: req.body.weight,
+      time: new Date()
+    })
+  })
+})
 
 app.listen(3001, () => {
   console.log(`Glory listening on port 3001`);
