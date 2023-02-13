@@ -17,7 +17,7 @@ function Data() {
 
   async function handleSubmit() {
     if(weight !== 0 && reps !== 0 && selectedLift !== '') {
-      await putlift(currentUser.uid, weight, selectedLift, reps);
+      await putlift(currentUser.uid, Number(weight), selectedLift, Number(reps));
     };
   };
 
