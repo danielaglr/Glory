@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
 
 import fetchLifts from '../utility/helpers/fetchLifts';
 import toMDT from '../utility/cleaning/toMDT';
@@ -9,6 +11,10 @@ import Navbar from '../components/navbar';
 function Lifts() {
   const [liftArr, setLiftArr] = useState([]);
   const [selectedTab, setSelectedTab] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState('date-dscnd');
+
+  /* Table filters */
+  console.log(selectedFilter);
 
   const { currentUser } = useAuth();
 
@@ -20,7 +26,31 @@ function Lifts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const sortedLiftArr = liftArr.sort((a, b) => new Date(b.time._seconds * 1000) - new Date(a.time._seconds * 1000));
+  let sortedLiftArr;
+
+  switch (selectedFilter) {
+    case 'date-ascnd':
+      sortedLiftArr = liftArr.sort((a, b) => new Date(a.time._seconds * 1000) - new Date(b.time._seconds * 1000));
+      break;
+    case 'date-dscnd':
+      sortedLiftArr = liftArr.sort((a, b) => new Date(b.time._seconds * 1000) - new Date(a.time._seconds * 1000));
+      break;
+    case 'weight-ascnd':
+      sortedLiftArr = liftArr.sort((a, b) => a.weight - b.weight);
+      break;
+    case 'weight-dscnd':
+      sortedLiftArr = liftArr.sort((a, b) => b.weight - a.weight);
+      break;
+    case 'reps-ascnd':
+      sortedLiftArr = liftArr.sort((a, b) => a.reps - b.reps);
+      break;
+    case 'reps-dscnd':
+      sortedLiftArr = liftArr.sort((a, b) => b.reps - a.reps);
+      break;
+    default:
+      sortedLiftArr = liftArr.sort((a, b) => new Date(b.time._seconds * 1000) - new Date(a.time._seconds * 1000));
+      break;
+  };
 
   return (
     <div className='hidden lg:block w-screen h-screen text-dark-theme fixed'>
@@ -42,10 +72,10 @@ function Lifts() {
             <table className='flex flex-col w-[80vw] h-[calc(100%_-_55px)] text-white rounded-2xl fixed'>
               <thead className='w-full h-[55px] bg-dark-theme font-medium px-10 shadow-md rounded-t-2xl'>
                 <tr className='flex justify-between items-center w-full h-full text-start'>
-                  <th className='w-[150px] text-start'>Date</th>
-                  <th className='w-[150px] text-start'>Lift</th>
-                  <th className='w-[150px] text-start'>Weight</th>
-                  <th className='w-[150px] text-start'>Reps</th>
+                  <th className='w-[150px] text-start cursor-pointer' onClick={() => selectedFilter !== 'date-ascnd' ? setSelectedFilter('date-ascnd') : setSelectedFilter('date-dscnd')}>Date {selectedFilter === 'date-ascnd' ? <FontAwesomeIcon icon={faChevronUp} /> : ''}{selectedFilter === 'date-dscnd' ? <FontAwesomeIcon icon={faChevronDown} /> : ''}</th>
+                  <th className='w-[150px] text-start cursor-pointer'>Lift</th>
+                  <th className='w-[150px] text-start cursor-pointer' onClick={() => selectedFilter !== 'weight-ascnd' ? setSelectedFilter('weight-ascnd') : setSelectedFilter('weight-dscnd')}>Weight {selectedFilter === 'weight-ascnd' ? <FontAwesomeIcon icon={faChevronUp} /> : ''}{selectedFilter === 'weight-dscnd' ? <FontAwesomeIcon icon={faChevronDown} /> : ''}</th>
+                  <th className='w-[150px] text-start cursor-pointer' onClick={() => selectedFilter !== 'reps-ascnd' ? setSelectedFilter('reps-ascnd') : setSelectedFilter('reps-dscnd')}>Reps {selectedFilter === 'reps-ascnd' ? <FontAwesomeIcon icon={faChevronUp} /> : ''}{selectedFilter === 'reps-dscnd' ? <FontAwesomeIcon icon={faChevronDown} /> : ''}</th>
                 </tr>
               </thead>
               <tbody className='w-full text-dark-theme bg-white shadow-md rounded-b-2xl'>
