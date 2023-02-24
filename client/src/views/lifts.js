@@ -73,7 +73,7 @@ function Lifts() {
               <thead className='w-full h-[55px] bg-dark-theme font-medium px-10 shadow-md rounded-t-2xl'>
                 <tr className='flex justify-between items-center w-full h-full text-start'>
                   <th className='w-[150px] text-start cursor-pointer' onClick={() => selectedFilter !== 'date-ascnd' ? setSelectedFilter('date-ascnd') : setSelectedFilter('date-dscnd')}>Date {selectedFilter === 'date-ascnd' ? <FontAwesomeIcon icon={faChevronUp} /> : ''}{selectedFilter === 'date-dscnd' ? <FontAwesomeIcon icon={faChevronDown} /> : ''}</th>
-                  <th className='w-[150px] text-start cursor-pointer'>Lift</th>
+                  <th className='w-[150px] text-start'>Lift</th>
                   <th className='w-[150px] text-start cursor-pointer' onClick={() => selectedFilter !== 'weight-ascnd' ? setSelectedFilter('weight-ascnd') : setSelectedFilter('weight-dscnd')}>Weight {selectedFilter === 'weight-ascnd' ? <FontAwesomeIcon icon={faChevronUp} /> : ''}{selectedFilter === 'weight-dscnd' ? <FontAwesomeIcon icon={faChevronDown} /> : ''}</th>
                   <th className='w-[150px] text-start cursor-pointer' onClick={() => selectedFilter !== 'reps-ascnd' ? setSelectedFilter('reps-ascnd') : setSelectedFilter('reps-dscnd')}>Reps {selectedFilter === 'reps-ascnd' ? <FontAwesomeIcon icon={faChevronUp} /> : ''}{selectedFilter === 'reps-dscnd' ? <FontAwesomeIcon icon={faChevronDown} /> : ''}</th>
                 </tr>
