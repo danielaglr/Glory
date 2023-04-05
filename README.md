@@ -33,7 +33,11 @@ npm run build
 Users can create an account, authenticated through firebase's authentication system, and begin logging their lifts, which are then stored in firebase's firestore database. 
 
 <div align="center"> 
- <img width="850" alt="image" src="https://user-images.githubusercontent.com/81238732/230174673-9b2563a1-8d2c-4739-a209-7c8dd3f9be1d.png">
+<img width="1470" alt="image" src="https://user-images.githubusercontent.com/81238732/230183662-fe65d109-e977-497e-a221-ad12f2519691.png">
+</div>
+
+<div align="center">
+<img width="1470" alt="image" src="https://user-images.githubusercontent.com/81238732/230183494-b4e16b26-0b31-4906-9b87-602eed3ae713.png">
 </div>
 
 ## Contributing
