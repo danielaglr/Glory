@@ -34,7 +34,7 @@ Users can create an account, authenticated through firebase's authentication sys
 
 <div align="center"> 
  <img width="850" alt="image" src="https://user-images.githubusercontent.com/81238732/230174673-9b2563a1-8d2c-4739-a209-7c8dd3f9be1d.png">
-</div
+</div>
 
 ## Contributing
 
