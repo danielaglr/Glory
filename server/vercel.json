@@ -1,0 +1,6 @@
+{
+  "builds": {
+      "src": "index.js"
+  },
+  "rewrites": [{ "source": "(.*)", "destination": "/" }]
+}
