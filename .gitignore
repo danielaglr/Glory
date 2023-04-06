@@ -12,6 +12,7 @@ client/src/firebase.js
 /coverage
 
 # production
+*/build/
 /build
 
 # misc
